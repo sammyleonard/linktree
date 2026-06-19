@@ -68,8 +68,13 @@
             width: 100%;
             text-align: center;
             margin-top: 40px; /* Space for header */
-        }
 
+        }
+.links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* This forces the space between EVERY button to be exactly 15px */
+        }
         .profile-card {
             background-color: var(--card-bg);
             border-radius: 20px;
@@ -348,8 +353,8 @@
                 <img src ="image.png" alt="width=120 height=120" onerror="this.style.display='none';">
             </div>
             
-            <h1>Sammy Leonard</h1>
-            <p>Computer Science Graduate | Developer | Creator | Tech Enthusiast</p>
+            <h1>SAMMY LEONARD</h1>
+            <p>COMPUTER SCIENCE UNDERGRADUATE | DEVELOPER | TECH ENTHUSIAST</p>
             <div class="link-tree">
                 <!-- Email Contact Button -->
                 <a href="mailto:sammyleonard777@gmail.com" class="link-btn btn-email">
