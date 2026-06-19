@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sammy Leonard | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --card-bg: #1a1a1a;
+            --modal-bg: #252525;
+            --text-color: #ffffff;
+            --text-secondary: #aaa;
+            --accent-color: #007bff;
+            --discord-color: #5865F2;
+            --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --whatsapp-color: #25D366;
+            --threads-color: #aaa;
+            --github-color: #f0f0f0;
+            --github-text: #1a1a1a;
+            --doc-color: #333;
+            --doc-hover: #444;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Header / Menu Button */
+        .header-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .menu-btn {
+            background: var(--card-bg);
+            border: 1px solid #333;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background 0.2s;
+        }
+
+        .menu-btn:hover {
+            background: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            margin-top: 40px; /* Space for header */
+        }
+
+        .profile-card {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid #333;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #333;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            font-weight: bold;
+            color: #555;
+            border: 3px solid var(--accent-color);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .link-tree {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-btn, .doc-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s, opacity 0.2s;
+            position: relative;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+        }
+
+        .link-btn:hover, .doc-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .link-btn:active, .doc-btn:active {
+            transform: translateY(0);
+        }
+
+        /* Email Button Style */  
+.btn-email {  
+    background: linear-gradient(135deg, #ea4335, #d33426); /* Google/Email red gradient */  
+    color: white;  
+    text-decoration: none;  
+    padding: 15px 20px;  
+    border-radius: 8px;  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    gap: 10px;  
+    font-weight: bold;  
+    font-size: 16px;  
+    transition: transform 0.2s, opacity 0.2s;  
+    border: none;  
+    width: 100%;  
+    box-sizing: border-box;  
+    margin-bottom: 15px; /* Spacing between buttons */  
+}  
+.btn-email:hover {  
+    transform: translateY(-2px);  
+    opacity: 0.9;  
+}  
+.btn-email:active {  
+    transform: translateY(0);  
+}  
+.btn-email .icon svg {  
+    width: 24px;  
+    height: 24px;  
+}  
+        .btn-instagram {
+            background: var(--instagram-gradient);
+            color: white;
+        }
+        .btn-threads{
+            background-color: var(--threads-color);
+            color: rgb(50, 48, 48);
+        }
+        .btn-github {
+            background-color: var(--github-color);
+            color: var(--github-text);
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-color);
+            color: white;
+        }
+
+        .btn-discord {
+            background-color: var(--discord-color);
+            color: white;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .icon {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 200; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            background-color: rgba(0,0,0,0.8); 
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--modal-bg);
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            border: 1px solid #333;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: white;
+        }
+
+        .doc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .doc-item {
+            background-color: var(--doc-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .doc-item:hover {
+            background-color: var(--doc-hover);
+        }
+
+        /* Toast Notification */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            padding: 16px;
+            position: fixed;
+            z-index: 300;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            border: 1px solid #444;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+        .icon img {  
+    width: 20px;  
+    height: 20px;  
+    object-fit: contain;  
+    display: inline-block;  
+    vertical-align: middle;  
+}  
+
+/* Make sure the button content is aligned properly */  
+.link-btn {  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    gap: 2px;  
+}  
+    </style>
+</head>
+<body>
+
+    <!-- Header with Documents Button -->
+    <div class="header-menu">
+        <button class="menu-btn" onclick="openModal()" title="My Documents">
+            📄 Documents
+        </button>
+    </div>
+
+    <div class="container">
+        <div class="profile-card">
+            <!-- PROFILE PICTURE CONFIGURATION -->
+            <!-- To add your image: Replace the src below with your image URL. 
+                Example: src="https://github.com/sammyleonard.png" or a link to your photo.
+                If you leave the src empty or remove the img tag, the initials "SL" will show. -->
+            <div class="avatar">
+                <!-- Uncomment the line below and add your image URL to use a real photo -->
+                <!-- <img src="YOUR_IMAGE_URL_HERE" alt="Sammy Leonard" onerror="this.style.display='none';"> -->
+                <img src ="image.png" alt="width=120 height=120" onerror="this.style.display='none';">
+            </div>
+            
+            <h1>Sammy Leonard</h1>
+            <p>Computer Science Graduate | Developer | Creator | Tech Enthusiast</p>
+            <div class="link-tree">
+                <!-- Email Contact Button -->
+                <a href="mailto:sammyleonard777@gmail.com" class="link-btn btn-email">
+    <span class="icon">
+        <!-- Using an SVG icon for email so you don't need a separate file -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+        </svg>
+    </span>
+    Email Me
+                </a>
+                <a href="https://instagram.com/_leonardokal" target="_blank" rel="noopener" class="link-btn btn-instagram">
+                    <span class="icon"><img src ="instagram.png" alt="width=24 height=24" onerror="this.style.display='none';"></span> Instagram
+                </a>
+                <a href="https://www.threads.com/@_leonardokal" target="_blank" rel="noopener" class="link-btn btn-threads">
+                    <span class="icon"><img src ="threads.png" alt="width=24 height=24" onerror="this.style.display='none';"></span> Threads
+                </a>
+
+                <a href="https://github.com/sammyleonard" target="_blank" rel="noopener" class="link-btn btn-github">
+                    <span class="icon"><img src ="github.png" alt="width=24 height=24" onerror="this.style.display='none';"></span> GitHub
+                </a>
+
+                <a href="https://wa.me/254705873235" target="_blank" rel="noopener noreferrer" class="link-btn btn-whatsapp">
+                    <span class="icon"><img src="whatsapp.png" alt="WhatsApp Icon" onerror="this.style.display='none';"></span> WhatsApp
+                </a>
+
+                <a href="https://discord.com/users/leonardokal" target="_blank" rel="noopener" class="link-btn btn-discord">
+                    <span class="icon"><img src ="discord.png" alt="width=24 height=24" onerror="this.style.display='none';"></span> Discord
+                </a>
+            </div>
+            <div class="footer">
+                &copy; 2026 Sammy Leonard. All rights reserved.
+            </div>
+        </div>
+    </div>
+
+    <!-- Documents Modal -->
+    <div id="documentsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2 class="modal-title">My Documents</h2>
+            <div class="doc-list">
+                <!-- DOCUMENT LINKS SECTION -->
+                <!-- Replace '#' with the actual link to your resume/CV. 
+                    You can host PDFs on GitHub (in a public repo), Google Drive (set to Anyone with link), or Dropbox. -->
+                
+                <a href="#" target="_blank" rel="noopener" class="doc-item">
+                    📄 Download Resume / CV
+                </a>
+                
+                <a href="#" target="_blank" rel="noopener" class="doc-item">
+                    📜 Certifications
+                </a>
+
+                <a href="#" target="_blank" rel="noopener" class="doc-item">
+                    📂 Project Portfolio (PDF)
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast">Username copied to clipboard!</div>
+
+    <script>
+        // Modal Functions
+        function openModal() {
+            document.getElementById("documentsModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("documentsModal").style.display = "none";
+        }
+
+        // Close modal if clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById("documentsModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Discord Copy Function
+        function copyDiscord() {
+            const username = "leonardokal";
+            navigator.clipboard.writeText(username).then(() =>
+                showToast()
+            ).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert("Failed to copy. Username is: " + username);
+            });
+        }
+
+        // Toast Notification Function
+        function showToast() {
+            const toast = document.getElementById("toast");
+            toast.className = "show";
+            setTimeout(function(){ toast.className = toast.className.replace("show", ""); }, 3000);
+        }
+    function copyEmail() {  
+        const email = document.getElementById('hidden-email').innerText;  
+        navigator.clipboard.writeText(email).then(() => {  
+            // Success feedback  
+            const btnText = document.getElementById('email-text');  
+            const originalText = btnText.innerText;  
+            btnText.innerText = "Email Copied! ✅";  
+            btnText.style.color = "#4CAF50"; // Green color for success  
+            // Reset after 3 seconds  
+            setTimeout(() => {  
+                btnText.innerText = originalText;  
+                btnText.style.color = ""; // Reset color  
+            }, 3000);  
+        }).catch(err => {  
+            // Fallback for older browsers  
+            const textArea = document.createElement("textarea");  
+            textArea.value = email;  
+            document.body.appendChild(textArea);  
+            textArea.select();  
+            document.execCommand("copy");  
+            document.body.removeChild(textArea);  
+            alert("Email copied to clipboard: " + email);  
+        });  
+    }  
+    </script>
+
+</body>
+</html>
