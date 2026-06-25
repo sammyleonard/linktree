@@ -1,6 +1,6 @@
 # linktree
 
-```text
+``text
 git init
 git add README.md
 git commit -m "Initial commit"
